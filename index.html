@@ -101,7 +101,6 @@
             color: var(--accent-color);
         }
 
-        
         .hire-badge {
             display: inline-flex;
             align-items: center;
@@ -150,6 +149,7 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             padding: 0.75rem 1.25rem;
             border-radius: 8px;
             font-size: 0.95rem;
@@ -273,6 +273,47 @@
             font-weight: 500;
         }
 
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .contact-card span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-card p, .contact-card a {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+        }
+
         footer {
             padding: 3rem 0;
             text-align: center;
@@ -298,7 +339,6 @@
 <body>
 
     <div class="container">
-        
         <header>
             <div class="header-left">
                 <a href="#" class="logo-container">
@@ -319,9 +359,8 @@
             </div>
         </header>
 
-        
         <section class="hero" style="border: none; padding-top: 1rem;">
-            <h1>Hi, I'm Aj Limpangog!</h1>
+            <h1>Hi, I'm Aj Limpangog.</h1>
             <p>An IT student and developer focused on building clean, high-performance web applications and interactive frontend experiences.</p>
             <div class="btn-group">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -329,13 +368,11 @@
             </div>
         </section>
 
-        
         <section id="projects">
             <h2>Featured Projects</h2>
             <div id="project-grid" class="project-grid"></div>
         </section>
 
-        
         <section id="skills">
             <h2>Technical Skills</h2>
             <div class="skills-list">
@@ -348,11 +385,34 @@
             </div>
         </section>
 
-        
         <section id="contact" style="border: none;">
             <h2>Get In Touch</h2>
             <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Have a project in mind or want to collaborate? Feel free to reach out.</p>
-            <a href="mailto:your.email@example.com" class="btn btn-primary">Send an Email</a>
+            
+            <div class="contact-info-grid">
+                <div class="contact-card">
+                    <span>Email</span>
+                    <a href="mailto:your-email@example.com">your-email@example.com</a>
+                </div>
+                <div class="contact-card">
+                    <span>Phone</span>
+                    <p>0994-043-1797</p>
+                </div>
+                <div class="contact-card">
+                    <span>Location</span>
+                    <p>Cebu, Philippines</p>
+                </div>
+                <div class="contact-card">
+                    <span>GitHub</span>
+                    <a href="https://github.com/ejaylimpangog44-bit" target="_blank" rel="noopener">ejaylimpangog44-bit</a>
+                </div>
+            </div>
+
+            <div class="contact-actions">
+                <a href="mailto:Ejaylimpangog44@gmail.com" class="btn btn-primary">Send an Email</a>
+                <a href="https://www.facebook.com/share/14sw1qvPDfh/" target="_blank" rel="noopener" class="btn btn-secondary">Facebook Profile</a>
+                <a href="https://github.com/ejaylimpangog44-bit" target="_blank" rel="noopener" class="btn btn-secondary">GitHub Profile</a>
+            </div>
         </section>
 
         <footer>
