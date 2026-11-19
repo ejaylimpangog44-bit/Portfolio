@@ -21,7 +21,7 @@
             --transition: all 0.25s ease;
         }
 
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -590,7 +590,7 @@
                 "https://arcadehubgames-july12.vercel.app/",
             repoUrl:
                 "https://github.com/ejaylimpangog44-bit/ArcadeHub"
-        }
+        },
         {
             title: "Schedule Management System (SMS)",
 
@@ -603,7 +603,7 @@
                 "JavaScript"
             ],
 
-            liveUrl: "https://smartschedulerappv1.vercel.app/",
+            liveUrl: "",
             repoUrl:
                 "https://github.com/ejaylimpangog44-bit/SMS"
         }
@@ -617,6 +617,10 @@
         const card = document.createElement("div");
 
         card.className = "project-card";
+
+        const liveLinkHtml = project.liveUrl
+            ? `<a href="${project.liveUrl}" target="_blank" rel="noopener">Live Demo &rarr;</a>`
+            : "";
 
         card.innerHTML = `
             <div>
@@ -632,11 +636,7 @@
             </div>
 
             <div class="project-links">
-                <a href="${project.liveUrl}"
-                   target="_blank"
-                   rel="noopener">
-                    Live Demo &rarr;
-                </a>
+                ${liveLinkHtml}
 
                 <a href="${project.repoUrl}"
                    target="_blank"
