@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Dark GitHub-inspired theme tokens */
+        /* Dark GitHub-inspired color scheme and theme tokens */
         :root {
             --bg-color: #0d1117;
             --surface-color: #161b22;
@@ -23,7 +23,7 @@
             --transition: all 0.25s ease;
         }
 
-        /* Global box-sizing and spacing reset */
+        /* Global box-sizing and margin/padding reset */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -54,7 +54,7 @@
             display: block;
         }
 
-        /* Main portfolio layout container stacked above background canvas */
+        /* Main centered layout container stacked above background canvas */
         .container {
             position: relative;
             z-index: 1;
@@ -63,7 +63,7 @@
             padding: 0 2rem;
         }
 
-        /* Header navigation and availability badge */
+        /* Header styles */
         header {
             padding: 2rem 0;
             display: flex;
@@ -146,7 +146,7 @@
             box-shadow: 0 0 8px rgba(46, 160, 67, 0.6);
         }
 
-        /* Hero section */
+        /* Hero section styles */
         .hero {
             padding: 3rem 0;
         }
@@ -205,7 +205,7 @@
             border-color: var(--text-secondary);
         }
 
-        /* Shared content sections */
+        /* Section base styles */
         section {
             padding: 4rem 0;
             border-bottom: 1px solid var(--surface-border);
@@ -286,7 +286,7 @@
             color: var(--accent-color);
         }
 
-        /* Technical skills marquee */
+        /* Technical skills infinite marquee */
         .marquee-container {
             background: var(--surface-color);
             border: 1px solid var(--surface-border);
@@ -365,7 +365,7 @@
             }
         }
 
-        /* Padded contact cards and side-by-side desktop action buttons */
+        /* Contact section grid and responsive action buttons */
         .contact-info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -412,7 +412,7 @@
             flex: 1 1 180px;
         }
 
-        /* Footer with extra bottom breathing room on desktop so robot never crowds text */
+        /* Footer styles with extra bottom space for floating companion */
         footer {
             padding: 3rem 0 6.5rem;
             text-align: center;
@@ -420,7 +420,7 @@
             font-size: 0.9rem;
         }
 
-        /* Floating neon robot companion in bottom-right corner */
+        /* Box-free floating neon robot companion in bottom-right corner */
         #bot-companion {
             position: fixed;
             right: 1.5rem;
@@ -429,14 +429,18 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 0.65rem;
+            gap: 0.6rem;
             max-width: calc(100vw - 2rem);
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
             pointer-events: auto;
         }
 
-        /* Clean speech bubble with zero extra sub-text */
+        /* Clean greeting speech bubble */
         #bot-bubble {
-            background-color: rgba(22, 27, 34, 0.95);
+            background-color: rgba(22, 27, 34, 0.94);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--surface-border);
@@ -449,7 +453,7 @@
             line-height: 1.4;
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
             cursor: pointer;
-            transition: border-color 0.2s ease, transform 0.2s ease, opacity 0.25s ease;
+            transition: border-color 0.2s ease, transform 0.2s ease;
             position: relative;
         }
 
@@ -471,41 +475,47 @@
             transform: rotate(45deg);
         }
 
-        /* Interactive robot trigger button */
+        /* Unboxed robot trigger: no card background, border, or rectangular box */
         #bot-trigger {
-            background: rgba(13, 17, 23, 0.78);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(88, 166, 255, 0.28);
-            border-radius: 16px;
-            padding: 0.45rem 0.5rem 0.35rem;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+            margin: 0;
             cursor: pointer;
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 18px rgba(88, 166, 255, 0.12);
-            transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+            outline: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.22s ease;
         }
 
         #bot-trigger:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 22px rgba(88, 166, 255, 0.25);
+            transform: scale(1.04);
         }
 
+        #bot-trigger:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 4px;
+            border-radius: 10px;
+        }
+
+        /* Gentle floating and subtle tilt animation on the robot itself */
         #bot-svg {
-            width: 84px;
-            height: 108px;
+            width: 88px;
+            height: 114px;
             display: block;
             overflow: visible;
-            animation: robotFloat 3.4s ease-in-out infinite;
+            animation: robotFloatTilt 3.8s ease-in-out infinite;
         }
 
-        @keyframes robotFloat {
+        @keyframes robotFloatTilt {
             0%, 100% {
-                transform: translateY(0px);
+                transform: translateY(0px) rotate(-1.5deg);
             }
             50% {
-                transform: translateY(-5px);
+                transform: translateY(-6px) rotate(1.8deg);
             }
         }
 
@@ -517,11 +527,11 @@
         }
 
         .bot-eyelid-top {
-            transform: scaleY(0.18);
+            transform: scaleY(0.16);
         }
 
         .bot-eyelid-bottom {
-            transform: scaleY(0.18);
+            transform: scaleY(0.16);
         }
 
         #bot-svg.is-blinking .bot-eyelid-top {
@@ -540,7 +550,7 @@
         }
 
         #bot-svg.is-talking #bot-mouth-shape {
-            animation: mouthTalk 0.24s ease-in-out infinite alternate;
+            animation: mouthTalk 0.22s ease-in-out infinite alternate;
         }
 
         @keyframes mouthTalk {
@@ -548,14 +558,14 @@
                 transform: scaleY(0.55) scaleX(0.95);
             }
             50% {
-                transform: scaleY(1.45) scaleX(1.12);
+                transform: scaleY(1.5) scaleX(1.12);
             }
             100% {
-                transform: scaleY(0.85) scaleX(1.04);
+                transform: scaleY(0.85) scaleX(1.05);
             }
         }
 
-        /* Tablet and mobile breakpoints */
+        /* Responsive breakpoints */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -576,8 +586,8 @@
             }
 
             #bot-svg {
-                width: 72px;
-                height: 94px;
+                width: 74px;
+                height: 96px;
             }
 
             #bot-bubble {
@@ -651,6 +661,7 @@
 
 <div class="container">
 
+    <!-- 1. Header -->
     <header>
         <div class="header-left">
             <a href="#" class="logo-container">
@@ -673,6 +684,7 @@
         </div>
     </header>
 
+    <!-- 2. Hero Section -->
     <section class="hero" style="border: none; padding-top: 1rem;">
         <h1>Hi, I'm Aj Limpangog!</h1>
         <p>
@@ -693,11 +705,13 @@
         </div>
     </section>
 
+    <!-- 3. Featured Projects Section -->
     <section id="projects">
         <h2>Featured Projects</h2>
         <div id="project-grid" class="project-grid"></div>
     </section>
 
+    <!-- 4. Technical Skills Marquee Section -->
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="marquee-container" aria-label="Technical skills banner">
@@ -705,6 +719,7 @@
         </div>
     </section>
 
+    <!-- 5. Get In Touch Section -->
     <section id="contact" style="border: none;">
         <h2>Get In Touch</h2>
         <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
@@ -753,19 +768,20 @@
         </div>
     </section>
 
+    <!-- 6. Footer -->
     <footer>
         <p>&copy; 2026 AJ July Limpangog</p>
     </footer>
 
 </div>
 
-<!-- Floating neon robot companion -->
+<!-- 8. Box-Free Floating Neon Robot Companion -->
 <aside id="bot-companion" aria-label="Floating robot companion">
     <div id="bot-bubble" role="status" aria-live="polite">
         Hi there! Welcome to AJ's portfolio!
     </div>
 
-    <button type="button" id="bot-trigger" aria-label="Robot companion">
+    <button type="button" id="bot-trigger" aria-label="Robot companion greeting">
         <svg id="bot-svg" viewBox="0 0 110 142" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
@@ -784,60 +800,53 @@
                 </filter>
             </defs>
 
-            <!-- Antenna rod and glowing cyan orb -->
+            <!-- Antenna with glowing cyan ball -->
             <line x1="55" y1="27" x2="55" y2="14" stroke="#58a6ff" stroke-width="2.6" stroke-linecap="round" filter="url(#blueGlow)" />
             <circle cx="55" cy="10" r="6" fill="#38bdf8" filter="url(#cyanGlow)" />
 
-            <!-- Head assembly (rotates gently toward cursor) -->
+            <!-- Head assembly with side ears, glowing cyan eyes, blinking eyelids, and talking mouth -->
             <g id="bot-head-group">
-                <!-- Left and right ear pods -->
-                <circle cx="15" cy="49" r="5.5" fill="#161b22" stroke="#58a6ff" stroke-width="2.2" />
-                <circle cx="95" cy="49" r="5.5" fill="#161b22" stroke="#58a6ff" stroke-width="2.2" />
+                <circle cx="15" cy="49" r="5.5" fill="#0d1117" stroke="#58a6ff" stroke-width="2.2" filter="url(#blueGlow)" />
+                <circle cx="95" cy="49" r="5.5" fill="#0d1117" stroke="#58a6ff" stroke-width="2.2" filter="url(#blueGlow)" />
 
-                <!-- Outer rounded head shell -->
                 <rect x="20" y="27" width="70" height="44" rx="13" fill="#0d1117" stroke="#58a6ff" stroke-width="2.6" filter="url(#blueGlow)" />
-
-                <!-- Inner face visor -->
                 <rect x="25" y="32" width="60" height="34" rx="9" fill="#111824" stroke="rgba(88, 166, 255, 0.35)" stroke-width="1.2" />
 
-                <!-- Left eye socket, pupil, and slim upper/lower eyelids -->
+                <!-- Left eye -->
                 <g id="bot-eye-left">
                     <circle cx="41" cy="45" r="7.2" fill="#0b2239" stroke="#38bdf8" stroke-width="1.6" />
                     <g id="bot-pupil-left">
                         <circle cx="41" cy="45" r="3.4" fill="#7dd3fc" filter="url(#cyanGlow)" />
                         <circle cx="39.8" cy="43.8" r="1.1" fill="#ffffff" />
                     </g>
-                    <!-- Slim upper & lower eyelids -->
                     <rect class="bot-eyelid bot-eyelid-top" x="33.5" y="37.5" width="15" height="7.5" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1.1" />
                     <rect class="bot-eyelid bot-eyelid-bottom" x="33.5" y="45" width="15" height="7.5" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1.1" />
                 </g>
 
-                <!-- Right eye socket, pupil, and slim upper/lower eyelids -->
+                <!-- Right eye -->
                 <g id="bot-eye-right">
                     <circle cx="69" cy="45" r="7.2" fill="#0b2239" stroke="#38bdf8" stroke-width="1.6" />
                     <g id="bot-pupil-right">
                         <circle cx="69" cy="45" r="3.4" fill="#7dd3fc" filter="url(#cyanGlow)" />
                         <circle cx="67.8" cy="43.8" r="1.1" fill="#ffffff" />
                     </g>
-                    <!-- Slim upper & lower eyelids -->
                     <rect class="bot-eyelid bot-eyelid-top" x="61.5" y="37.5" width="15" height="7.5" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1.1" />
                     <rect class="bot-eyelid bot-eyelid-bottom" x="61.5" y="45" width="15" height="7.5" rx="3" fill="#161b22" stroke="#58a6ff" stroke-width="1.1" />
                 </g>
 
-                <!-- Talking mouth inside the face visor -->
+                <!-- Talking mouth -->
                 <g id="bot-mouth">
                     <rect id="bot-mouth-shape" x="45" y="56" width="20" height="5.2" rx="2.6" fill="#091624" stroke="#38bdf8" stroke-width="1.5" filter="url(#cyanGlow)" />
                 </g>
             </g>
 
             <!-- Neck connector -->
-            <rect x="46" y="71" width="18" height="8" rx="2.5" fill="#161b22" stroke="#58a6ff" stroke-width="2" />
+            <rect x="46" y="71" width="18" height="8" rx="2.5" fill="#0d1117" stroke="#58a6ff" stroke-width="2" />
 
-            <!-- Torso chest unit -->
+            <!-- Full robot torso body -->
             <g id="bot-torso">
                 <rect x="17" y="79" width="76" height="54" rx="13" fill="#0d1117" stroke="#58a6ff" stroke-width="2.6" filter="url(#blueGlow)" />
 
-                <!-- Left chest panel with green ECG / pulse wave -->
                 <rect x="24" y="87" width="32" height="24" rx="6" fill="#111824" stroke="rgba(88, 166, 255, 0.4)" stroke-width="1.3" />
                 <polyline
                     points="27,99 32,99 35,92 39,106 43,95 46,99 53,99"
@@ -848,11 +857,9 @@
                     fill="none"
                 />
 
-                <!-- Right chest circular dial / core indicator -->
                 <circle cx="74" cy="99" r="11" fill="#111824" stroke="rgba(88, 166, 255, 0.45)" stroke-width="1.5" />
                 <circle cx="74" cy="99" r="5.5" fill="#1f6feb" stroke="#58a6ff" stroke-width="1.4" />
 
-                <!-- Bottom corner accents -->
                 <circle cx="27" cy="123" r="3.4" fill="#161b22" stroke="#58a6ff" stroke-width="1.8" />
                 <circle cx="83" cy="123" r="3.4" fill="#161b22" stroke="#58a6ff" stroke-width="1.8" />
             </g>
@@ -861,7 +868,7 @@
 </aside>
 
 <script>
-    // Featured projects list rendered into #project-grid
+    // Dynamic featured projects array
     const projects = [
         {
             title: "Arcade Hub",
@@ -893,7 +900,7 @@
         }
     ];
 
-    // Technical skills marquee list
+    // Technical skills marquee items
     const skills = [
         "Full-Stack Dev",
         "HTML / CSS",
@@ -906,7 +913,7 @@
         "Git & GitHub"
     ];
 
-    // Render projects and skills marquee safely
+    // Render featured projects and skills marquee
     try {
         const gridContainer = document.getElementById("project-grid");
         if (gridContainer) {
@@ -957,10 +964,10 @@
             });
         }
     } catch (error) {
-        console.error("Failed to render portfolio sections:", error);
+        console.error("Failed to render portfolio dynamic sections:", error);
     }
 
-    // Neon Constellation Mesh background animation on #portfolio-particles
+    // 7. Neon Constellation Mesh background animation
     (function () {
         try {
             const canvas = document.getElementById("portfolio-particles");
@@ -1083,7 +1090,7 @@
         }
     })();
 
-    // Floating robot companion controller: eye tracking, blinking, talking mouth & clean greetings
+    // Floating robot companion controller: cursor eye tracking, blinking, talking mouth, and greetings
     (function () {
         try {
             const svgEl = document.getElementById("bot-svg");
@@ -1133,7 +1140,6 @@
                 showGreeting(greetingIndex + 1);
             }
 
-            // Natural periodic blinking
             function triggerBlink() {
                 if (reducedMotion) return;
                 svgEl.classList.add("is-blinking");
@@ -1155,7 +1161,6 @@
                 }, delay);
             }
 
-            // Track cursor / pointer smoothly with pupils and subtle head tilt
             function updateLookTarget(clientX, clientY) {
                 if (reducedMotion) {
                     pupilLeft.setAttribute("transform", "translate(0, 0)");
@@ -1209,7 +1214,6 @@
                 }
             });
 
-            // Initial greeting & blink cycle
             showGreeting(0);
             scheduleNextBlink();
         } catch (err) {
